@@ -6,6 +6,7 @@ class Config:
     BOT_TOKEN = environ.get("BOT_TOKEN", "8758810792:AAElWWkOmVcGfw7kDOmX1qjYtx3h6VqIZh8...") 
     BOT_SESSION = environ.get("BOT_SESSION", "your_session_string_here") 
     DB_URL = "mongodb+srv://emirmashuk77:Emirmashuk@7860@cluster0.zdfun6c.mongodb.net/forv2db?appName=Cluster0"
+    DATABASE_NAME = "forv2db"
     DATABASE_NAME = environ.get("DATABASE_NAME", "forward-bot")
     BOT_OWNER_ID = [int(id) for id in environ.get("BOT_OWNER_ID", '6964148334').split()]
 
