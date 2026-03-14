@@ -3,3 +3,4 @@ tgcrypto
 Pyrogram==2.0.93
 python-decouple
 requests
+flask
