@@ -1,7 +1,13 @@
 import os
 import threading
 import asyncio
+import logging
+import time
 from flask import Flask
+
+# Enable logging to see what's happening
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 print("Starting bot setup...")
 
@@ -26,21 +32,29 @@ def health():
 
 def run_flask():
     port = int(os.environ.get('PORT', 8000))
-    print(f"Starting Flask on port {port}")
+    logger.info(f"Starting Flask on port {port}")
     app.run(host='0.0.0.0', port=port)
 
+def heartbeat():
+    """Print a message every minute to show the bot is alive."""
+    while True:
+        logger.info("Bot is still running...")
+        time.sleep(60)  # Use time.sleep, not asyncio.sleep
+
 def run_bot():
-    print("Starting bot...")
+    logger.info("Starting bot...")
     try:
         # Run the bot using the same loop
         loop.run_until_complete(Bot().run())
     except Exception as e:
-        print(f"Bot crashed with error: {e}")
+        logger.error(f"Bot crashed with error: {e}")
         import traceback
         traceback.print_exc()
 
 if __name__ == '__main__':
     # Start Flask in a separate thread
     threading.Thread(target=run_flask).start()
+    # Start heartbeat thread
+    threading.Thread(target=heartbeat, daemon=True).start()
     # Run the bot in the main thread with its loop
     run_bot()
