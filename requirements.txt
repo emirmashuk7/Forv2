@@ -3,4 +3,3 @@ tgcrypto
 Pyrogram==2.0.93
 python-decouple
 requests
-DB_URL = "mongodb+srv://emirmashuk77:Emirmashuk@7860@cluster0.zdfun6c.mongodb.net/forv2db?appName=Cluster0"
